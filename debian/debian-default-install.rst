@@ -2,7 +2,7 @@
 
    .. code-block:: bash
       
-      apt install vim dnsutils ntp ssh python git cloud-init curl locate elinks net-tools tree
+      apt install vim dnsutils ntp ssh make python git cloud-init curl locate elinks net-tools tree
 
 #. Install PIP
 
@@ -38,3 +38,10 @@
    
       echo "alias cls=clear" >> ~/.bashrc
     
+#. Add Sphinx build environment
+
+   .. code-block:: bash
+   
+      pip install sphinx sphinx-autobuild sphinx_rtd_theme
+      pip install f5_sphinx_theme sphinxjp.themes.basicstrap recommonmark 
+      
