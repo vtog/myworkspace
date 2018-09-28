@@ -1,6 +1,6 @@
 #. Install apps
 
-   .. code-block:: console
+   .. code-block::
       :linenos:
       :emphasize-lines: 7,11,21
 
