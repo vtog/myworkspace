@@ -1,6 +1,7 @@
 #. Install apps
 
    .. code-block:: console
+      :linenos:
       :emphasize-lines: 7,11,21
 
       atom
