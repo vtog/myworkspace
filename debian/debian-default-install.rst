@@ -16,7 +16,7 @@
       pip install f5-sdk
       pip install ansible
 
-#. Set VIM default properites
+#. Set VIM default environment
 
    .. code-block:: bash
    
@@ -31,3 +31,10 @@
       set nowrap
       set pastetoggle=<F3>
       EOF
+
+#. Modify BASH environment
+
+   .. code-block:: bash
+   
+      echo "alias cls=clear" >> ~/.bashrc
+    
