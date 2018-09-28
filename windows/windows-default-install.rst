@@ -1,6 +1,6 @@
 #. Install apps
 
-   .. code-block::
+   .. code-block:: bash
       :linenos:
       :emphasize-lines: 7,11,21
 
