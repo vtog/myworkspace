@@ -12,6 +12,12 @@
       google chrome
       icloud
       itunes
+      microsft visual studio code
+         #Extensions
+         Docker
+         Python
+         reStructuredText
+         Spell Right
       mozilla firefox
       notepad++
       postman
