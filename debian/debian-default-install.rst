@@ -15,3 +15,19 @@
       # add misc packages
       pip install f5-sdk
       pip install ansible
+
+#. Set VIM default properites
+
+   .. code-block:: bash
+   
+      cat <<EOF >> ~/.vimrc
+      set expandtab
+      set tabstop=2
+      set shiftwidth=2
+      set autoindent
+      set smartindent
+      set copyindent
+      set bg=dark
+      set nowrap
+      set pastetoggle=<F3>
+      EOF
