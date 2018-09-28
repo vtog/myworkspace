@@ -1,6 +1,0 @@
-apt install vim dnsutils ntp ssh python git cloud-init curl locate elinks net-tools tree
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python get-pip.py
-pip install --upgrade pip
-pip install f5-sdk
-pip install ansible
