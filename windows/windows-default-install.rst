@@ -1,6 +1,7 @@
 #. Install apps
 
    .. code-block:: console
+      :emphasize-lines: 7,11,21
 
       atom
       beyond compare
