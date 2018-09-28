@@ -1,8 +1,6 @@
 #. Install apps
 
-   .. code-block:: bash
-      :linenos:
-      :emphasize-lines: 7,11,21
+   .. code-block:: console
 
       atom
       beyond compare
