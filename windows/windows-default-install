@@ -1,3 +1,7 @@
-python
-pip
+#. Install apps
 
+.. code-block:: console
+
+   python
+   pip
+   git
