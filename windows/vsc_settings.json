@@ -1,0 +1,19 @@
+{
+    "explorer.confirmDelete": false,
+    "editor.detectIndentation": false,
+    "editor.tabSize": 4,
+    "editor.minimap.enabled": false,
+    "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+    "files.autoSave": "off",
+    "restructuredtext.linter.extraArgs": [
+        "--ignore D002",
+        "--ignore D004",
+        "--max-line-length 80"
+    ],
+    "workbench.colorTheme": "Solarized Dark",
+    "editor.rulers": [
+        80
+    ],
+    "editor.wordWrapColumn": 80,
+    "[restructuredtext]": {"editor.tabSize": 3}
+}
