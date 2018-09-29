@@ -13,7 +13,7 @@
 
    .. code-block:: bash
    
-      pip install sphinx sphinx-autobuild sphinx_rtd_theme
+      pip install sphinx==1.7.9 sphinx-autobuild sphinx_rtd_theme
       
       # F5 Theme
       pip install f5_sphinx_theme sphinxjp.themes.basicstrap recommonmark 
