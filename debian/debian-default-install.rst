@@ -4,6 +4,28 @@
       
       apt install vim dnsutils ntp ssh make python git cloud-init curl locate elinks net-tools tree
 
+#. Modify BASH environment
+
+   .. code-block:: bash
+   
+      echo "alias cls=clear" >> ~/.bashrc
+
+#. Set VIM default environment
+
+   .. code-block:: bash
+   
+      cat <<EOF >> ~/.vimrc
+      set expandtab
+      set tabstop=2
+      set shiftwidth=2
+      set autoindent
+      set smartindent
+      set copyindent
+      set bg=dark
+      set nowrap
+      set pastetoggle=<F3>
+      EOF
+
 #. Modify GIT environment
    
    .. code-block:: bash
@@ -24,28 +46,6 @@
       pip install f5-sdk
       pip install ansible
 
-#. Set VIM default environment
-
-   .. code-block:: bash
-   
-      cat <<EOF >> ~/.vimrc
-      set expandtab
-      set tabstop=2
-      set shiftwidth=2
-      set autoindent
-      set smartindent
-      set copyindent
-      set bg=dark
-      set nowrap
-      set pastetoggle=<F3>
-      EOF
-
-#. Modify BASH environment
-
-   .. code-block:: bash
-   
-      echo "alias cls=clear" >> ~/.bashrc
-    
 #. Add Sphinx build environment
 
    .. code-block:: bash
