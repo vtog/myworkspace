@@ -2,7 +2,7 @@
 
    .. code-block:: bash
       
-      apt install vim dnsutils ntp ssh make python git curl locate elinks net-tools tree software-properties-common lsb-release apt-transport-https
+      apt install vim dnsutils ntp ssh make python git curl locate elinks net-tools tree sudo software-properties-common lsb-release apt-transport-https
 
 #. Modify BASH environment
 
@@ -55,10 +55,21 @@
       # F5 Theme
       pip install f5_sphinx_theme sphinxjp.themes.basicstrap recommonmark 
       
+#. Add user to sudo users
+
+   .. code-block:: bash
+   
+      usermod -a -G sudo vince
+      
+      # Modify sudo with "visudo" and change 
+      %sudo   ALL=(ALL:ALL) ALL
+      # to
+      %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
+      
 #. Install docker-ce
 
    .. code-block:: bash
-      
+   
       curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
       add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
       apt update && apt install docker-ce -y
