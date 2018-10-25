@@ -2,7 +2,7 @@
 
    .. code-block:: bash
       
-      apt install vim dnsutils ntp ssh make python git curl locate elinks net-tools tree sudo software-properties-common lsb-release apt-transport-https
+      apt install vim ntp ssh make python git curl locate tree sudo elinks net-tools dnsutils tcpdump software-properties-common lsb-release apt-transport-https
 
 #. Modify BASH environment
 
