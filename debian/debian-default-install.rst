@@ -26,6 +26,20 @@
       set pastetoggle=<F3>
       EOF
 
+#. Modify sshd
+
+   .. code-block:: bash
+   
+      # modify following settings     
+      vim /etc/ssh/sshd_config
+        ChallengeResponseAuthentication no
+         PasswordAuthentication no
+         UsePAM no
+         PermitRootLogin no
+      
+      # reload service
+      service ssh reload
+
 #. Modify GIT environment
    
    .. code-block:: bash
@@ -65,7 +79,7 @@
       %sudo   ALL=(ALL:ALL) ALL
       # to
       %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
-      
+
 #. Install docker-ce
 
    .. code-block:: bash
