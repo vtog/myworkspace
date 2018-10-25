@@ -32,11 +32,11 @@
    
       # modify following settings     
       vim /etc/ssh/sshd_config
-        ChallengeResponseAuthentication no
-         PasswordAuthentication no
-         UsePAM no
          PermitRootLogin no
-      
+         PasswordAuthentication no
+         ChallengeResponseAuthentication no
+         UsePAM no
+               
       # reload service
       service ssh reload
 
