@@ -47,6 +47,8 @@
       git config --global user.name "vtog"
       git config --global user.email "v.tognaci@f5.com"
       git config --global core.editor vim
+      git config credential.helper store
+      git config --global credential.helper 'cache --timeout 7200'
 
 #. Install PIP
 
