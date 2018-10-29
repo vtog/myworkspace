@@ -8,7 +8,9 @@
 
    .. code-block:: bash
    
-      echo "alias cls=clear" >> ~/.bashrc
+      echo "alias 'cls=clear'" >> ~/.bashrc
+      echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
+      echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
 
 #. Set VIM default environment
 
