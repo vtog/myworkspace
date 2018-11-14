@@ -2,7 +2,7 @@
 
    .. code-block:: console
 
-      atom
+      atom (deprecated)
       beyond compare
       docker
       dropbox
