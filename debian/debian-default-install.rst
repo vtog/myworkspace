@@ -49,8 +49,6 @@
       git config --global user.name "vtog"
       git config --global user.email "v.tognaci@f5.com"
       git config --global core.editor vim
-      git config credential.helper store
-      git config --global credential.helper 'cache --timeout 7200'
 
 #. Install PIP
 
@@ -71,7 +69,8 @@
       pip install sphinx==1.7.9 sphinx-autobuild sphinx_rtd_theme
       
       # F5 Theme
-      pip install f5_sphinx_theme sphinxjp.themes.basicstrap recommonmark 
+      pip install f5_sphinx_theme sphinxjp.themes.basicstrap recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag
+      apt install graphviz
       
 #. Add user to sudo users
 

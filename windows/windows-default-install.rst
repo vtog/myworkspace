@@ -2,14 +2,13 @@
 
    .. code-block:: console
 
-      atom (deprecated)
       beyond compare
       docker
       dropbox
       evernote
-      filezilla
       git
       google chrome
+      graphviz (add to system path... "C:\Program Files (x86)\Graphviz2.38\bin\")
       icloud
       itunes
       microsft visual studio code
