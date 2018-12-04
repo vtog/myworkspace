@@ -7,6 +7,7 @@
       pip install --upgrade pip
       
       # add misc packages
+      pip install doc8
       pip install f5-sdk
       
 #. Add Sphinx build environment
