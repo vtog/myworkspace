@@ -5,11 +5,12 @@
       apt update
       apt upgrade
 
-#. Setup Xsession
+#. Setup mate for all users
 
    .. code-block:: bash
    
-      echo mate-session> ~/.xsession
+      sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
+      systemctl restart xrdp.service
 
 #. Install XRDP
 
