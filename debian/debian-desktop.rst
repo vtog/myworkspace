@@ -5,12 +5,12 @@
       apt update
       apt upgrade
 
-#. Setup mate for all users
+#. Install Mate
 
    .. code-block:: bash
    
-      sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
-      systemctl restart xrdp.service
+      #apt install mate-core (don't think i need this one)
+      apt install ubuntu-mate-desktop
 
 #. Install XRDP
 
@@ -18,9 +18,9 @@
    
       apt install xrdp
 
-#. Install Mate
+#. Setup mate for all users
 
    .. code-block:: bash
    
-      #apt install mate-core (don't think i need this one)
-      apt install ubuntu-mate-desktop
+      sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
+      systemctl restart xrdp.service
