@@ -9,7 +9,6 @@
 
    .. code-block:: bash
    
-      #apt install mate-core (don't think i need this one)
       apt install ubuntu-mate-desktop
 
 #. Install XRDP
