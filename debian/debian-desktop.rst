@@ -11,8 +11,10 @@
    
       apt install xrdp
 
-#. Install Mate
+#. Install Mate or Cinnamon
 
    .. code-block:: bash
    
       apt install ubuntu-mate-desktop
+      or
+      apt install cinnamon-desktop-environment
