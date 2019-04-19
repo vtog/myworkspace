@@ -56,20 +56,21 @@
       
       curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
       python get-pip.py
-      pip install --upgrade pip
+      pip install pip --upgrade
       
       # add misc packages
-      pip install f5-sdk
-      pip install ansible
+      pip install f5-sdk --upgrade
+      pip install ansible --upgrade
+      pip install awscli --upgrade
 
 #. Add Sphinx build environment
 
    .. code-block:: bash
    
-      pip install sphinx==1.7.9 sphinx-autobuild sphinx_rtd_theme
+      pip install sphinx sphinx-autobuild sphinx_rtd_theme
       
       # F5 Theme
-      pip install f5_sphinx_theme sphinxjp.themes.basicstrap recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag
+      pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       apt install graphviz
       
 #. Add user to sudo users
