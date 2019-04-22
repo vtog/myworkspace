@@ -26,6 +26,7 @@
       set bg=dark
       set nowrap
       set pastetoggle=<F3>
+      set number
       EOF
 
 #. Modify sshd
