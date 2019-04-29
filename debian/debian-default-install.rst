@@ -2,7 +2,32 @@
 
    .. code-block:: bash
       
-      apt install vim ntp ssh make python git curl locate tree sudo elinks net-tools dnsutils tcpdump software-properties-common lsb-release apt-transport-https
+      apt install vim ntp ssh make python git curl locate tree sudo elinks net-tools dnsutils tcpdump software-properties-common lsb-release apt-transport-https nginx
+
+#. Modify sshd
+
+   .. code-block:: bash
+   
+      # modify following settings     
+      vim /etc/ssh/sshd_config
+         PermitRootLogin no
+         PasswordAuthentication no
+         ChallengeResponseAuthentication no
+         UsePAM no
+               
+      # reload service
+      service ssh reload
+
+#. Add user to sudo users
+
+   .. code-block:: bash
+   
+      usermod -a -G sudo <user>
+      
+      # Modify sudo with "visudo" and change 
+      %sudo   ALL=(ALL:ALL) ALL
+      # to
+      %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
 
 #. Modify BASH environment
 
@@ -26,29 +51,14 @@
       set bg=dark
       set nowrap
       set pastetoggle=<F3>
-      set number
       EOF
-
-#. Modify sshd
-
-   .. code-block:: bash
-   
-      # modify following settings     
-      vim /etc/ssh/sshd_config
-         PermitRootLogin no
-         PasswordAuthentication no
-         ChallengeResponseAuthentication no
-         UsePAM no
-               
-      # reload service
-      service ssh reload
 
 #. Modify GIT environment
    
    .. code-block:: bash
    
-      git config --global user.name "vtog"
-      git config --global user.email "v.tognaci@f5.com"
+      git config --global user.name <user>
+      git config --global user.email <email>
       git config --global core.editor vim
 
 #. Install PIP
@@ -74,17 +84,6 @@
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       apt install graphviz
       
-#. Add user to sudo users
-
-   .. code-block:: bash
-   
-      usermod -a -G sudo vince
-      
-      # Modify sudo with "visudo" and change 
-      %sudo   ALL=(ALL:ALL) ALL
-      # to
-      %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
-
 #. Install docker-ce
 
    .. code-block:: bash
