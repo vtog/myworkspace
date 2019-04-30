@@ -51,6 +51,8 @@
       set bg=dark
       set nowrap
       set pastetoggle=<F3>
+      syntax on
+      colorscheme slate
       EOF
 
 #. Modify GIT environment
