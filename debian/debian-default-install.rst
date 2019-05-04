@@ -33,7 +33,7 @@
 
    .. code-block:: bash
    
-      echo "alias 'cls=clear'" >> ~/.bashrc
+      echo "alias cls='clear'" >> ~/.bashrc
       echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
       echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
 
@@ -54,6 +54,8 @@
       syntax on
       colorscheme slate
       EOF
+
+      sudo update-alternatives --config editor
 
 #. Modify GIT environment
    
