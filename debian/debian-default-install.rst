@@ -2,7 +2,7 @@
 
    .. code-block:: bash
       
-      apt install vim ntp ssh make python git curl locate tree sudo elinks net-tools dnsutils tcpdump software-properties-common lsb-release apt-transport-https nginx
+      apt install vim ntp ssh make python3 python3-setuptools python3-distutils git curl locate tree sudo elinks net-tools dnsutils tcpdump software-properties-common lsb-release apt-transport-https nginx
 
 #. Modify sshd
 
@@ -70,28 +70,29 @@
    .. code-block:: bash
       
       curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-      python get-pip.py
-      pip install pip --upgrade
+      sudo python get-pip.py
+      sudo pip install pip --upgrade
       
       # add misc packages
-      pip install f5-sdk --upgrade
-      pip install ansible --upgrade
-      pip install awscli --upgrade
+      sudo pip install f5-sdk
+      sudo pip install ansible
+      sudo pip install awscli
+      
 
 #. Add Sphinx build environment
 
    .. code-block:: bash
    
-      pip install sphinx sphinx-autobuild sphinx_rtd_theme
+      sudo pip install sphinx sphinx-autobuild sphinx_rtd_theme
       
       # F5 Theme
-      pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
-      apt install graphviz
+      sudo pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
+      sudo apt install graphviz
       
 #. Install docker-ce
 
    .. code-block:: bash
    
       curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-      add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-      apt update && apt install docker-ce -y
+      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
+      sudo apt update && apt install docker-ce -y
