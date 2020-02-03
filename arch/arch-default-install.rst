@@ -53,7 +53,7 @@ I also have added my default preferences.
 
    .. code-block:: bash
 
-      pacstrap -i base linux linux-headers linux-firmware dhcpcd grub efibootmgr dosfstools
+      pacstrap -i base
 
 #. Create fstab on new partition
 
@@ -67,10 +67,18 @@ I also have added my default preferences.
 
       arch-chroot /mnt
 
+# Update pacman mirror list with reflector
+
+   .. code-block:: bash
+
+      sudo pacman -S reflector
+      sudo reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+
 #. Install default packages
 
    .. code-block:: bash
       
+      pacman -S linux linux-headers linux-firmware dhcpcd grub efibootmgr dosfstools
       pacman -S linux-lts linux-lts-headers base-devel bash-completion net-tools lsb-release
       pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker
 
@@ -99,7 +107,7 @@ I also have added my default preferences.
       cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
       grub-mkconfig -o /boot/grub/grub.cfg
 
-#. setup SWAP file (configure appropriate size based on environment)
+#. Setup SWAP file (configure appropriate size based on environment)
 
    .. code-block:: bash
 
@@ -145,6 +153,12 @@ I also have added my default preferences.
       exit
       umount -a
       reboot
+
+#. Login with "new user" and validate sudo rights
+
+   .. code-block:: bash
+
+      sudo pacman -Syu
 
 #. Modify BASH environment
 
@@ -206,6 +220,8 @@ I also have added my default preferences.
 #. Install GUI
 
    .. code-block:: bash
+
+      su -
 
       pacman -S xorg-server (xorg-xinit)
       pacman -S gdm #sddm for kde
