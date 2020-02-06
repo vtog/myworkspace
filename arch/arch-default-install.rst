@@ -26,7 +26,7 @@ I also have added my default preferences.
          n                 #New
          2                 #Root
          <default>         #Default
-         +40G              #Set size
+         +30G              #Set size
          n                 #New
          3                 #home
          <default>         #Default
@@ -71,21 +71,23 @@ I also have added my default preferences.
 
    .. code-block:: bash
 
-      sudo pacman -S reflector
-      sudo reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+      pacman -S reflector
+      reflector --latest 15 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 #. Install default packages
 
    .. code-block:: bash
       
-      pacman -S linux linux-headers linux-firmware dhcpcd grub efibootmgr dosfstools
-      pacman -S linux-lts linux-lts-headers base-devel bash-completion net-tools lsb-release
-      pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker
+      pacman -S linux linux-headers linux-firmware
+      pacman -S base-devel grub efibootmgr dosfstools os-prober mtools network-manager-applet networkmanager wireless_tools wpa_supplicant dialog dhcpcd
+      pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker man-db bash-completion
 
+      systemctl enable dhcpcd
       systemctl enable sshd
       systemctl enable nginx
       systemctl enable docker
-      systemctl enable ntp
+      systemctl enable ntpd
+      systemctl enable NetworkManager
 
 #. Update locale and timezone
 
@@ -105,6 +107,18 @@ I also have added my default preferences.
       grub-install --target=x86_64-efi --bootloader-id=grub-uefi --recheck
       mkdir /boot/grub/locale
       cp /usr/share/locale/en\@quot/LC_MESSAGES/grub.mo /boot/grub/locale/en.mo
+      grub-mkconfig -o /boot/grub/grub.cfg
+
+#. Modify GRUB to remember last selected kernel
+
+   .. code-block:: bash
+
+      vim /etc/default/grub
+
+      # Add the following lines; write and quite
+      GRUB_SAVEDEFAULT="true"
+      GRUB_DEFAULT="saved"
+
       grub-mkconfig -o /boot/grub/grub.cfg
 
 #. Setup SWAP file (configure appropriate size based on environment)
@@ -127,16 +141,14 @@ I also have added my default preferences.
          ChallengeResponseAuthentication no
          UsePAM no
 
-#. Modify sudo with "visudo"
+#. Modify sudo with "visudo" allowing group "wheel" sudo rights
 
    .. code-block:: bash
    
       EDITOR=vim visudo
-      
-      # from
-      %sudo   ALL=(ALL:ALL) ALL
-      # to
-      %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
+
+      # Uncomment the following line with visudo
+      %wheel ALL=(ALL:ALL) NOPASSWD:ALL
 
 #. Add new user and set passwords
 
@@ -164,7 +176,7 @@ I also have added my default preferences.
 
    .. code-block:: bash
    
-      echo "alias 'cls=clear'" >> ~/.bashrc
+      echo "alias cls='clear'" >> ~/.bashrc
       echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
       echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
 
@@ -217,18 +229,26 @@ I also have added my default preferences.
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       apt install graphviz
       
-#. Install GUI
+#. Install Desktop Environment
 
    .. code-block:: bash
 
       su -
 
-      pacman -S xorg-server (xorg-xinit)
+      pacman -S xorg-server
+
+      # What video driver do I have?
+      lspci -nnk | grep -EA3 "VGA|'Kern'|3D|Display"
+
+      # Intel
+      pacman -S xf86-video-intel mesa
+      # AMD
+      pacman -S xf86-video-amdgpu mesa
+      #VMWare
+      pacman -S xf86-video-vmware mesa
+
       pacman -S gdm #sddm for kde
       systemctl enable gdm
-
-      # Virtual ENV
-      pacman -S virtualbox-guest-utils virtualbox-guest-modules-arch mesa mesa-libgl
 
       pacman -S gnome gnome-terminal nautilus gnome-tweaks gnome-control-center gnome-backgrounds adwaita-icon-theme arc-gtk-theme firefox
       #OR
