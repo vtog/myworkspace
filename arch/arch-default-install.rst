@@ -209,7 +209,7 @@ I also have added my default preferences.
       # Intel
       pacman -S xf86-video-intel mesa
       # AMD
-      pacman -S xf86-video-amdgpu mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
+      pacman -S xf86-video-amdgpu mesa vulkan-radeon
       #VMWare
       pacman -S xf86-video-vmware mesa
 
