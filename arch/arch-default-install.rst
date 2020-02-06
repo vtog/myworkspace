@@ -195,16 +195,6 @@ I also have added my default preferences.
       git config --global user.email <email>
       git config --global core.editor vim
 
-#. Add Sphinx build environment
-
-   .. code-block:: bash
-   
-      pip install sphinx sphinx-autobuild sphinx_rtd_theme
-      
-      # F5 Theme
-      pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
-      apt install graphviz
-
 #. Install Desktop Environment
 
    .. code-block:: bash
@@ -244,6 +234,16 @@ I also have added my default preferences.
       pip install f5-sdk --upgrade
       pip install ansible --upgrade
       pip install awscli --upgrade
+
+#. Add Sphinx build environment
+
+   .. code-block:: bash
+   
+      pip install sphinx sphinx-autobuild sphinx_rtd_theme
+      
+      # F5 Theme
+      pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
+      apt install graphviz
 
 #. Modify sshd (cert auth only)
 
