@@ -53,7 +53,7 @@ I also have added my default preferences.
 
    .. code-block:: bash
 
-      pacstrap -i base
+      pacstrap -i /mnt base
 
 #. Create fstab on new partition
 
@@ -67,7 +67,7 @@ I also have added my default preferences.
 
       arch-chroot /mnt
 
-# Update pacman mirror list with reflector
+#. Update pacman mirror list with reflector
 
    .. code-block:: bash
 
