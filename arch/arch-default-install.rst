@@ -128,18 +128,7 @@ I also have added my default preferences.
       fallocate -l 2G /swapfile
       chmod 600 /swapfile
       mkswap /swapfile
-      echo '/swapfile none swap sw 0 0' | tee -a /ets/fstab
-
-#. Modify sshd (cert auth only)
-
-   .. code-block:: bash
-   
-      # modify following settings     
-      vim /etc/ssh/sshd_config
-         PermitRootLogin no
-         PasswordAuthentication no
-         ChallengeResponseAuthentication no
-         UsePAM no
+      echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
 
 #. Modify sudo with "visudo" allowing group "wheel" sudo rights
 
@@ -206,19 +195,6 @@ I also have added my default preferences.
       git config --global user.email <email>
       git config --global core.editor vim
 
-#. Install PIP
-
-   .. code-block:: bash
-      
-      curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-      python get-pip.py
-      pip install pip --upgrade
-      
-      # add misc packages
-      pip install f5-sdk --upgrade
-      pip install ansible --upgrade
-      pip install awscli --upgrade
-
 #. Add Sphinx build environment
 
    .. code-block:: bash
@@ -228,7 +204,7 @@ I also have added my default preferences.
       # F5 Theme
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       apt install graphviz
-      
+
 #. Install Desktop Environment
 
    .. code-block:: bash
@@ -255,3 +231,27 @@ I also have added my default preferences.
       pacman -S xfce4 xfce4-goodies xfce4-terminal
       #OR
       pacman -S plasma konsole dolphin
+
+#. Install PIP
+
+   .. code-block:: bash
+      
+      curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+      python get-pip.py
+      pip install pip --upgrade
+      
+      # add misc packages
+      pip install f5-sdk --upgrade
+      pip install ansible --upgrade
+      pip install awscli --upgrade
+
+#. Modify sshd (cert auth only)
+
+   .. code-block:: bash
+   
+      # modify following settings     
+      vim /etc/ssh/sshd_config
+         PermitRootLogin no
+         PasswordAuthentication no
+         ChallengeResponseAuthentication no
+         UsePAM no
