@@ -8,7 +8,7 @@ I also have added my default preferences.
 
 #. Boot from ISO
 
-   - `Download Archi Linux ISO  <https://www.archlinux.org/download/>`_
+   - `Download Arch Linux ISO  <https://www.archlinux.org/download/>`_
    - `Balena Etcher <https://github.com/balena-io/etcher>`_ to create bootable
      thumbdrive
 
@@ -19,6 +19,15 @@ I also have added my default preferences.
       systemctl start sshd
 
       passwd
+
+#. Update mirrorlist
+
+   .. code-block:: bash
+
+      - `Arch Mirrorlist Generator <https://www.archlinux.org/mirrorlist/>`_
+
+      # Copy & Replace current mirrorlist with generated content
+      vim /etc/pacmad.d/mirrorlist
 
 #. Partition available disk drives
 
