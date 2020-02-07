@@ -22,10 +22,9 @@ I also have added my default preferences.
 
 #. Update mirrorlist
 
-   .. code-block:: bash
+   - `Arch Mirrorlist Generator  <https://www.archlinux.org/mirrorlist/>`_
 
-      - `Arch Mirrorlist Generator  <https://www.archlinux.org/mirrorlist/>`_
-      - `Download Arch Linux ISO  <https://www.archlinux.org/download/>`_
+   .. code-block:: bash
 
       # Copy & Replace current mirrorlist with generated content
       vim /etc/pacmad.d/mirrorlist
