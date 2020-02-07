@@ -24,7 +24,7 @@ I also have added my default preferences.
 
    .. code-block:: bash
 
-      - `Arch Mirrorlist Generator <https://www.archlinux.org/mirrorlist/>`_
+      - `Arch Mirrorlist Generator  <https://www.archlinux.org/mirrorlist/>`_
 
       # Copy & Replace current mirrorlist with generated content
       vim /etc/pacmad.d/mirrorlist
