@@ -12,6 +12,14 @@ I also have added my default preferences.
    - `Balena Etcher <https://github.com/balena-io/etcher>`_ to create bootable
      thumbdrive
 
+#. Enable sshd and set root passwd (This step is optional)
+
+   .. code-block:: bash
+
+      systemctl start sshd
+
+      passwd
+
 #. Partition available disk drives
 
    .. code-block:: bash
