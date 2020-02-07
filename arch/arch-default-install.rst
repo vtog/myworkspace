@@ -201,7 +201,7 @@ I also have added my default preferences.
 
       su -
 
-      pacman -S xorg-server
+      pacman -S xorg
 
       # What video driver do I have?
       lspci -nnk | grep -EA3 "VGA|'Kern'|3D|Display"
@@ -209,14 +209,14 @@ I also have added my default preferences.
       # Intel
       pacman -S xf86-video-intel mesa
       # AMD
-      pacman -S xf86-video-amdgpu mesa vulkan-radeon
+      pacman -S xf86-video-amdgpu mesa
       #VMWare
       pacman -S xf86-video-vmware mesa
 
       pacman -S gdm #sddm for kde
       systemctl enable gdm
 
-      pacman -S gnome gnome-terminal nautilus gnome-tweaks gnome-control-center gnome-backgrounds adwaita-icon-theme arc-gtk-theme firefox
+      pacman -S gnome gnome-extra gnome-terminal nautilus gnome-tweaks gnome-control-center gnome-backgrounds adwaita-icon-theme arc-gtk-theme firefox
       #OR
       pacman -S xfce4 xfce4-goodies xfce4-terminal
       #OR
