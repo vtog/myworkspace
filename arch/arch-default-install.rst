@@ -153,16 +153,15 @@ I also have added my default preferences.
    
       EDITOR=vim visudo
 
-      # Uncomment the following line with visudo
+      # Uncomment the following line with visudo (write and quit)
       %wheel ALL=(ALL:ALL) NOPASSWD:ALL
 
 #. Add new user and set passwords
 
    .. code-block:: bash
 
-      useradd -m -G wheel vince
+      useradd -m -G users,wheel vince
       passwd vince
-      passwd root
 
 #. Reboot to new partition
 
@@ -182,6 +181,7 @@ I also have added my default preferences.
 
    .. code-block:: bash
    
+      echo "alias ll='ls -l --color=auto'" >> ~/.bashrc
       echo "alias cls='clear'" >> ~/.bashrc
       echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
       echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
@@ -230,14 +230,11 @@ I also have added my default preferences.
       #VMWare
       pacman -S xf86-video-vmware mesa
 
-      pacman -S gdm #sddm for kde
-      systemctl enable gdm
-
-      pacman -S gnome gnome-extra gnome-terminal nautilus gnome-tweaks gnome-control-center gnome-backgrounds adwaita-icon-theme arc-gtk-theme firefox
+      pacman -S gnome gnome-extra adwaita-icon-theme
       #OR
-      pacman -S xfce4 xfce4-goodies xfce4-terminal
+      pacman -S xfce4 xfce4-goodies
       #OR
-      pacman -S plasma konsole dolphin
+      pacman -S plasma kde-applications
 
 #. Install PIP
 
@@ -262,7 +259,7 @@ I also have added my default preferences.
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       apt install graphviz
 
-#. Modify sshd (cert auth only)
+#. Modify sshd (cert ONLY auth)
 
    .. code-block:: bash
    
