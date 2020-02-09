@@ -1,3 +1,8 @@
+Setup Debian Desktop Environment
+================================
+
+These instruction configure Debian Desktop Enviroment with support for RDP.
+
 #. Update/Upgrade Debian
 
    .. code-block:: bash

@@ -1,3 +1,8 @@
+Setup Debian
+============
+
+These instruction configure Debian with my preferred settings.
+
 #. Install the default packages
 
    .. code-block:: bash
