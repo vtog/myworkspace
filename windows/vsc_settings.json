@@ -4,7 +4,6 @@
     "editor.tabSize": 4,
     "editor.minimap.enabled": false,
     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
-    "files.autoSave": "off",
     "restructuredtext.linter.extraArgs": [
         "--ignore D002",
         "--ignore D004",
@@ -15,5 +14,10 @@
         80
     ],
     "editor.wordWrapColumn": 80,
-    "[restructuredtext]": {"editor.tabSize": 3}
+    "[restructuredtext]": {
+        "editor.tabSize": 3
+    },
+    "window.zoomLevel": 0,
+    "explorer.confirmDragAndDrop": false,
+    "git.ignoreLegacyWarning": true,
 }
