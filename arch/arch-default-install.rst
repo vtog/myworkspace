@@ -96,16 +96,20 @@ I also have added my default preferences.
 
    .. code-block:: bash
       
-      pacman -S linux linux-headers linux-firmware
-      pacman -S base-devel grub efibootmgr dosfstools os-prober mtools network-manager-applet networkmanager wireless_tools wpa_supplicant dialog dhcpcd
+      # Base requirements
+      pacman -S linux linux-headers linux-firmware base-devel grub efibootmgr dosfstools os-prober mtools dhcpcd
+
+      # Base utilities 
       pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker man-db bash-completion
+
+      # Wireless support (if needed)
+      pacman -S wireless_tools wpa_supplicant dialog
 
       systemctl enable dhcpcd
       systemctl enable sshd
       systemctl enable nginx
       systemctl enable docker
       systemctl enable ntpd
-      systemctl enable NetworkManager
 
 #. Update locale and timezone
 
