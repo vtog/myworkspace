@@ -27,7 +27,8 @@ I also have added my default preferences.
    .. code-block:: bash
 
       # Copy & Replace current mirrorlist with generated content
-      vim /etc/pacmad.d/mirrorlist
+      vim /etc/pacman.d/mirrorlist
+      pacman -Syy
 
 #. Partition available disk drives
 
