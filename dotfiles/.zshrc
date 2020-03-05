@@ -60,10 +60,10 @@ setopt auto_cd
 alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
 alias cls='clear'
-alias glog='git log --oneline --decorate'
 alias reload='. ~/.zshrc'
 alias pmu='sudo pacman -Syy && sudo pkgfile --update'
 alias gs='git status'
+alias gl='git log --graph --decorate --all --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%ai%C(reset) %C(auto)%d%C(reset): ''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)''
 
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
