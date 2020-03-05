@@ -22,9 +22,14 @@ _comp_options+=(globdots)		# Include hidden files.
 
 # vi mode
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=5
 bindkey "^?" backward-delete-char
-bindkey '^h' backward-delete-char
+bindkey "^h" backward-delete-char
+bindkey "^[[1~" beginning-of-line
+bindkey "^[[4~" end-of-line
+bindkey "^[[3~" backward-delete-char
+bindkey "^[[5~" beginning-of-line
+bindkey "^[[6~" end-of-line
 
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% Vi MODE]%  %{$reset_color%}"
@@ -34,13 +39,13 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-
 # Enable searching through history
 bindkey '^r' history-incremental-pattern-search-backward
 
 # Edit line in vim buffer ctrl-e
 autoload edit-command-line; zle -N edit-command-line
 bindkey '^e' edit-command-line
+bindkey '^[[2~' edit-command-line
 
 # Source configs
 #for f in ~/.config/shellconfig/*; do source "$f"; done
@@ -59,12 +64,10 @@ setopt auto_cd
 
 alias ls='ls --color=auto'
 alias ll='ls -l --color=auto'
-alias cls='clear'
 alias reload='. ~/.zshrc'
 alias pmu='sudo pacman -Syy && sudo pkgfile --update'
 alias gs='git status'
 alias gl="git log --graph --decorate --all --format=format:'%C(bold green)%h%C(reset) - %C(bold cyan)%ai%C(reset) %C(auto)%d%C(reset): ''%C(white)%s%C(reset) %C(dim white)- %an%C(reset)'"
-
 
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_PROMPT_SEPARATE_LINE=false
