@@ -63,7 +63,7 @@ alias gl="git log --graph --decorate --all --format=format:'%C(bold green)%h%C(r
 #for f in ~/.config/shellconfig/*; do source "$f"; done
 
 # Load zsh-syntax-highlighting
-source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 # Suggest aliases for commands
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh 2>/dev/null
 # Search repos for programs that can't be found
