@@ -25,10 +25,9 @@ setopt auto_cd
 bindkey -v
 export KEYTIMEOUT=5
 bindkey "^?" backward-delete-char
-bindkey "^h" backward-delete-char
 bindkey "^[[1~" beginning-of-line    # HOME key
 bindkey "^[[4~" end-of-line          # END key
-bindkey "^[[3~" backward-delete-char # DEL key
+bindkey "^[[3~" delete-char          # DEL key
 bindkey "^[[5~" beginning-of-line    # PGUP key
 bindkey "^[[6~" end-of-line          # PGDN key
 
@@ -53,8 +52,9 @@ bindkey -s '^h' 'history\n'
 bindkey -s '^l' 'clear\n'
 
 # Alias's
+alias grep='grep --color=auto'
 alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
+alias ll='ls -algh --group-directories-first --color=auto'
 alias reload='. ~/.zshrc'
 alias pmu='sudo pacman -Syy && sudo pkgfile --update'
 alias gs='git status'
