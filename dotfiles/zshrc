@@ -32,7 +32,6 @@ bindkey "^[[5~" beginning-of-line    # PGUP key
 bindkey "^[[6~" end-of-line          # PGDN key
 
 # Adds a notification on the right hand side of the prompt when in Normal mode
-$ Change prompt when in VI Mode
 function zle-line-init zle-keymap-select {
     VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
     RPS1="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/} $EPS1"
