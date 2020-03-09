@@ -97,10 +97,10 @@ I also have added my default preferences.
    .. code-block:: bash
       
       # Base requirements
-      pacman -S linux linux-headers linux-firmware base-devel grub efibootmgr dosfstools os-prober mtools dhcpcd
+      pacman -S linux linux-headers linux-firmware base-devel grub efibootmgr dosfstools os-prober mtools dhcpcd zsh
 
       # Base utilities 
-      pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker man-db bash-completion
+      pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker man-db bash-completion rsync tmux
 
       # Wireless support (if needed)
       pacman -S wireless_tools wpa_supplicant dialog
@@ -240,6 +240,16 @@ I also have added my default preferences.
       pacman -S xfce4 xfce4-goodies
       #OR
       pacman -S plasma kde-applications
+
+#. Setup .dotfiles
+
+   .. note:: This assumes my "dotfiles" repo exists.
+
+   .. code-block:: bash
+
+      git clone --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
+      rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
+      rm -rf tmpdotfiles
 
 #. Install PIP
 
