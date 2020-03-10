@@ -7,7 +7,13 @@ These instruction configure Debian with my preferred settings.
 
    .. code-block:: bash
       
-      apt install vim ntp ssh make python3 python3-setuptools python3-distutils git curl locate tree sudo elinks net-tools dnsutils tcpdump software-properties-common lsb-release apt-transport-https nginx
+      # Base requirements
+      apt install zsh vim ntp ssh git sudo net-tools dnsutils lsb-release apt-transport-https software-properties-common
+      
+      # base utilities
+      apt install make python3 python3-setuptools python3-distutils curl locate tree elinks tcpdump nginx rsync tmux
+      
+      systemctl enable ntp
 
 #. Modify sshd
 
@@ -21,7 +27,7 @@ These instruction configure Debian with my preferred settings.
          UsePAM no
                
       # reload service
-      service ssh reload
+      systemctl restart sshd
 
 #. Add user to sudo users
 

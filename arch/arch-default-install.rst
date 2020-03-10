@@ -182,74 +182,15 @@ I also have added my default preferences.
 
       sudo pacman -Syu
 
-#. Modify BASH environment
-
-   .. code-block:: bash
-   
-      echo "alias ll='ls -l --color=auto'" >> ~/.bashrc
-      echo "alias cls='clear'" >> ~/.bashrc
-      echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
-      echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
-
-#. Set VIM default environment
-
-   .. code-block:: bash
-   
-      cat <<EOF >> ~/.vimrc
-      set expandtab
-      set tabstop=2
-      set shiftwidth=2
-      set autoindent
-      set smartindent
-      set copyindent
-      set bg=dark
-      set nowrap
-      set pastetoggle=<F3>
-      syntax on
-      colorscheme slate
-      EOF
-
-#. Modify GIT environment
-   
-   .. code-block:: bash
-   
-      git config --global user.name <user>
-      git config --global user.email <email>
-      git config --global core.editor vim
-
-#. Install Desktop Environment
-
-   .. code-block:: bash
-
-      su -
-
-      pacman -S xorg
-
-      # What video driver do I have?
-      lspci -nnk | grep -EA3 "VGA|'Kern'|3D|Display"
-
-      # Intel
-      pacman -S xf86-video-intel mesa
-      # AMD
-      pacman -S xf86-video-amdgpu mesa
-      #VMWare
-      pacman -S xf86-video-vmware mesa
-
-      pacman -S gnome gnome-extra adwaita-icon-theme
-      #OR
-      pacman -S xfce4 xfce4-goodies
-      #OR
-      pacman -S plasma kde-applications
-
 #. Setup .dotfiles
 
-   .. note:: This assumes my "dotfiles" repo exists.
+   .. note:: This assumes the "dotfiles" repo exists.
 
    .. code-block:: bash
 
       git clone --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
       rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
-      rm -rf tmpdotfiles
+      rm -rf ~/tmpdotfiles
       source .zshrc
       dotfiles config --local status.showUntrackedFiles no
 
@@ -286,3 +227,28 @@ I also have added my default preferences.
          PasswordAuthentication no
          ChallengeResponseAuthentication no
          UsePAM no
+
+#. Install Desktop Environment
+
+   .. code-block:: bash
+
+      su -
+
+      pacman -S xorg
+
+      # What video driver do I have?
+      lspci -nnk | grep -EA3 "VGA|'Kern'|3D|Display"
+
+      # Intel
+      pacman -S xf86-video-intel mesa
+      # AMD
+      pacman -S xf86-video-amdgpu mesa
+      #VMWare
+      pacman -S xf86-video-vmware mesa
+
+      pacman -S gnome gnome-extra adwaita-icon-theme
+      #OR
+      pacman -S xfce4 xfce4-goodies
+      #OR
+      pacman -S plasma kde-applications
+
