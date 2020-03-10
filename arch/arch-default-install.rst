@@ -191,8 +191,18 @@ I also have added my default preferences.
       git clone --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
       rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
       rm -rf ~/tmpdotfiles
-      source .zshrc
+      source ~/.zshrc
       dotfiles config --local status.showUntrackedFiles no
+
+#. Setup Spaceship-prompt
+
+   .. code-block:: bash
+   
+      git clone https://aur.archlinux.org/spaceship-prompt-git.git
+      cd spaceship-prompt-git
+      makepkg -si
+      
+      source ~/.zshrc
 
 #. Install PIP
 
