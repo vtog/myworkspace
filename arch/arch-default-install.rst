@@ -250,6 +250,8 @@ I also have added my default preferences.
       git clone --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
       rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
       rm -rf tmpdotfiles
+      source .zshrc
+      dotfiles config --local status.showUntrackedFiles no
 
 #. Install PIP
 
