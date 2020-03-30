@@ -100,7 +100,7 @@ I also have added my default preferences.
       pacman -S linux linux-headers linux-firmware base-devel grub efibootmgr dosfstools os-prober mtools dhcpcd zsh
 
       # Base utilities 
-      pacman -S openssh vim ntp make python3 git curl tree sudo elinks tcpdump nginx docker man-db bash-completion rsync tmux
+      pacman -S openssh nvim ntp make python3 git curl tree sudo elinks tcpdump nginx docker man-db bash-completion rsync tmux
 
       # Wireless support (if needed)
       pacman -S wireless_tools wpa_supplicant dialog
@@ -203,6 +203,13 @@ I also have added my default preferences.
       makepkg -si
       
       source ~/.zshrc
+
+#. Install vim-plug (neovim)
+
+   .. code-block:: bash
+
+      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 #. Install PIP
 

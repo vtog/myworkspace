@@ -8,7 +8,7 @@ These instruction configure Debian with my preferred settings.
    .. code-block:: bash
       
       # Base requirements
-      apt install zsh vim ntp ssh git sudo net-tools dnsutils lsb-release apt-transport-https software-properties-common
+      apt install zsh nvim ntp ssh git sudo net-tools dnsutils lsb-release apt-transport-https software-properties-common
       
       # base utilities
       apt install make python3 python3-setuptools python3-distutils curl locate tree elinks tcpdump nginx rsync tmux
@@ -48,33 +48,35 @@ These instruction configure Debian with my preferred settings.
       echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
       echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
 
-#. Set VIM default environment
+#. Setup .dotfiles
+
+   .. note:: This assumes the "dotfiles" repo exists.
 
    .. code-block:: bash
-   
-      cat <<EOF >> ~/.vimrc
-      set expandtab
-      set tabstop=2
-      set shiftwidth=2
-      set autoindent
-      set smartindent
-      set copyindent
-      set bg=dark
-      set nowrap
-      set pastetoggle=<F3>
-      syntax on
-      colorscheme slate
-      EOF
 
-      sudo update-alternatives --config editor
+      git clone --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
+      rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
+      rm -rf ~/tmpdotfiles
+      source ~/.zshrc
+      dotfiles config --local status.showUntrackedFiles no
 
-#. Modify GIT environment
-   
+#. Setup Spaceship-prompt
+
    .. code-block:: bash
-   
-      git config --global user.name <user>
-      git config --global user.email <email>
-      git config --global core.editor vim
+
+      git clone https://aur.archlinux.org/spaceship-prompt-git.git
+      cd spaceship-prompt-git
+      makepkg -si
+
+      source ~/.zshrc
+
+#. Install vim-plug (neovim)
+
+   .. code-block:: bash
+
+      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 
 #. Install PIP
 
