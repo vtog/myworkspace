@@ -165,7 +165,7 @@ I also have added my default preferences.
 
    .. code-block:: bash
 
-      useradd -m -G users,wheel vince
+      useradd -m -G users,wheel,docker vince
       passwd vince
 
 #. Reboot to new partition
