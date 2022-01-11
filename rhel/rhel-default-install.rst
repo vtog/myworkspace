@@ -1,5 +1,5 @@
-Setup Debian
-============
+Setup Fedora/RHEL
+=================
 
 These instruction configure RHEL8 with my preferred settings.
 
@@ -9,11 +9,8 @@ These instruction configure RHEL8 with my preferred settings.
       
       # Base requirements
       dnf install epel
-      dnf install zsh neovim 
+      dnf install zsh neovim nginx
       
-      # base utilities (need to double check what's already here by default)
-      dnf install make curl elinks tcpdump nginx
-
 #. Modify sshd
 
    .. code-block:: bash
@@ -22,30 +19,20 @@ These instruction configure RHEL8 with my preferred settings.
       vim /etc/ssh/sshd_config
          PermitRootLogin no
          PasswordAuthentication no
-         ChallengeResponseAuthentication no
-         UsePAM no
                
       # reload service
       systemctl restart sshd
 
-#. Add user to sudo users
+#. Add user to wheel users
 
    .. code-block:: bash
    
-      usermod -a -G sudo <user>
+      usermod -a -G wheel <user>
       
-      # Modify sudo with "visudo" and change 
-      %sudo   ALL=(ALL:ALL) ALL
+      # Modify sudo with "visudo" and uncomment or modify the follow line
+      %wheel  ALL=(ALL)       ALL
       # to
-      %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
-
-#. Modify BASH environment
-
-   .. code-block:: bash
-   
-      echo "alias cls='clear'" >> ~/.bashrc
-      echo "alias glog='git log --oneline --decorate'" >> ~/.bashrc
-      echo "alias reload='. ~/.bashrc'" >> ~/.bashrc
+      %wheel  ALL=(ALL)       NOPASSWD: ALL
 
 #. Setup .dotfiles
 
