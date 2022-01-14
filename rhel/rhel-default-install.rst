@@ -6,10 +6,15 @@ These instruction configure RHEL8 with my preferred settings.
 #. Install the default packages
 
    .. code-block:: bash
+
+      sudo dnf install \
+      https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
       
+      sudo dnf install \
+      https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+
       # Base requirements
-      dnf install epel
-      dnf install zsh neovim nginx
+      dnf install zsh neovim noefetch alacritty gnome-tweaks
       
 #. Modify sshd
 
