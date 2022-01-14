@@ -8,10 +8,10 @@ These instruction configure Debian with my preferred settings.
    .. code-block:: bash
       
       # Base requirements
-      apt install zsh nvim ntp ssh git sudo net-tools dnsutils lsb-release apt-transport-https software-properties-common
+      apt install zsh ntp ssh git sudo net-tools dnsutils apt-transport-https software-properties-common
       
       # base utilities
-      apt install make python3 python3-setuptools python3-distutils curl locate tree elinks tcpdump nginx rsync tmux
+      apt install neovim make python3-setuptools curl locate tree elinks tcpdump nginx rsync tmux
       
       systemctl enable ntp
 
@@ -24,7 +24,7 @@ These instruction configure Debian with my preferred settings.
          PermitRootLogin no
          PasswordAuthentication no
          ChallengeResponseAuthentication no
-         UsePAM no
+         UsePAM yes
                
       # reload service
       systemctl restart sshd
