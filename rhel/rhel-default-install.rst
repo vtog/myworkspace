@@ -39,6 +39,16 @@ These instruction configure RHEL8 with my preferred settings.
       # to
       %wheel  ALL=(ALL)       NOPASSWD: ALL
 
+#. Modify LDAP shell attribute (IF needed)
+
+   .. code-block:: bash
+
+      getent passwd user-name
+      sss_override user-add user-name -s new-shell
+      systemctl restart sssd
+      getent passwd user-name
+      sss_override user-show user-name
+
 #. Setup .dotfiles
 
    .. note:: This assumes the "dotfiles" repo exists.
