@@ -14,6 +14,9 @@ These instruction configure RHEL8 with my preferred settings.
       # Base requirements
       dnf install zsh neovim noefetch alacritty gnome-tweaks
       
+      # Install Dev Tools
+      sudo dnf group install "Development Tools"
+      
 #. Modify sshd
 
    .. code-block:: bash
