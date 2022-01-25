@@ -7,11 +7,9 @@ These instruction configure RHEL8 with my preferred settings.
 
    .. code-block:: bash
 
-      sudo dnf install \
-      https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-      
-      sudo dnf install \
-      https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+      #Setup fusion free and non-free
+      dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+      dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
       # Base requirements
       dnf install zsh neovim noefetch alacritty gnome-tweaks
@@ -39,7 +37,7 @@ These instruction configure RHEL8 with my preferred settings.
       # to
       %wheel  ALL=(ALL)       NOPASSWD: ALL
 
-#. Modify LDAP shell attribute (IF needed)
+#. Modify LDAP shell attribute (IF needed RHEL required this.)
 
    .. code-block:: bash
 
@@ -105,13 +103,17 @@ These instruction configure RHEL8 with my preferred settings.
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       sudo dnf install graphviz
       
-#. Install docker-ce (this needs to be reworked, as its not correct)
+#. Install docker-ce
 
    .. code-block:: bash
-   
-      curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-      sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
-      sudo apt update && apt install docker-ce -y
 
+      sudo dnf install dnf-plugins-core
+      sudo dnf config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+      sudo dnf install docker-ce docker-ce-cli containerd.io
+      sudo systemctl start docker
+      sudo systemctl enable docker
+      
       # Add user to docker group
       usermod -a -G docker <user>
+      newgrp docker
+
