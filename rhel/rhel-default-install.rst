@@ -16,7 +16,7 @@ These instruction configure RHEL8 with my preferred settings.
       
       # Install Dev Tools
       sudo dnf group install "Development Tools"
-      
+
 #. Modify sshd
 
    .. code-block:: bash
@@ -40,7 +40,7 @@ These instruction configure RHEL8 with my preferred settings.
       # to
       %wheel  ALL=(ALL)       NOPASSWD: ALL
 
-#. Modify LDAP shell attribute (IF needed RHEL required this.)
+#. Modify LDAP shell attribute (IF needed; RHEL requires this.)
 
    .. code-block:: bash
 
@@ -67,8 +67,40 @@ These instruction configure RHEL8 with my preferred settings.
    .. code-block:: bash
 
       git clone https://github.com/spaceship-prompt/spaceship-prompt.git --depth=1
-      sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/local/share/zsh/site-functions/prompt_spaceship_setup      
+      sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup      
       source ~/.zshrc
+
+#. Install Alacritty from Source (if needed)
+
+   .. code-block:: bash
+
+      git clone git@github.com:alacritty/alacritty.git ~/git/alacritty
+      cd ~/git/alacritty
+      cargo build --release
+      sudo cp target/release/alacritty /usr/local/bin # or anywhere else in $PATH
+      sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+
+      # Create Desktop Entry
+      sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+      sudo desktop-file-install extra/linux/Alacritty.desktop
+      sudo update-desktop-databas
+
+      # Create Man Page
+      sudo mkdir -p /usr/local/share/man/man1
+      gzip -c extra/alacritty.man | sudo tee /usr/local/share/man/man1/alacritty.1.gz > /dev/null
+      gzip -c extra/alacritty-msg.man | sudo tee /usr/local/share/man/man1/alacritty-msg.1.gz > /dev/null
+
+      # Create Zsh Shell Completion
+      sudo cp extra/completions/_alacritty /usr/share/zsh/site-functions
+
+#. Install NeoVIM from Source (if needed)
+
+   .. code-block:: bash
+
+      git clone git@github.com:neovim/neovim.git ~/git/neovim
+      cd ~/git/neovim
+      make CMAKE_BUILD_TYPE=Release
+      sudo make install
 
 #. Install vim-plug (neovim)
 
@@ -92,10 +124,8 @@ These instruction configure RHEL8 with my preferred settings.
       pip install pip -U
       
       # add misc packages
-      pip install ansible
-      pip install awscli
+      pip install ansible awscli Pygments
       
-
 #. Add Sphinx build environment
 
    .. code-block:: bash
