@@ -136,7 +136,7 @@ These instruction configure RHEL8 with my preferred settings.
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       sudo dnf install graphviz
       
-#. Install docker-ce
+#. Install docker-ce (Not needed... use podman)
 
    .. code-block:: bash
 
