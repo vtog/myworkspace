@@ -12,7 +12,7 @@ These instruction configure RHEL8 with my preferred settings.
       dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
       # Base requirements (build neovim and alacritty from source for RHEL)
-      dnf install zsh neovim neofetch alacritty gnome-tweaks
+      dnf install zsh neovim neofetch terminator gnome-tweaks
       
       # Install Dev Tools
       sudo dnf group install "Development Tools"
@@ -56,11 +56,11 @@ These instruction configure RHEL8 with my preferred settings.
 
    .. code-block:: bash
 
-      git clone --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
+      git clone -b rhel --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
       rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
       rm -rf ~/tmpdotfiles
       source ~/.zshrc
-      dotfiles config --local status.showUntrackedFiles no
+      dots config --local status.showUntrackedFiles no
 
 #. Setup Spaceship-prompt
 
