@@ -2,17 +2,19 @@ Setup Fedora/RHEL
 =================
 
 These instruction configure RHEL8 with my preferred settings.
-
-#. Install the default packages
-
-   .. code-block:: bash
-
       #Setup fusion free and non-free
-      dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
-      dnf install https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
-      # Base requirements (build neovim and alacritty from source for RHEL)
-      dnf install zsh neovim neofetch terminator gnome-tweaks
+      #Fedora
+      sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+      sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    
+      #RHEL
+      sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
+      sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm 
+      sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
+
+      # Base requirements
+      sudo dnf install zsh neovim neofetch terminator podman gnome-tweaks gnome-extensions-app
       
       # Install Dev Tools
       sudo dnf group install "Development Tools"
@@ -29,18 +31,22 @@ These instruction configure RHEL8 with my preferred settings.
       # reload service
       systemctl restart sshd
 
-#. Add user to wheel users
+#. Add user to wheel group if needed
 
    .. code-block:: bash
    
       usermod -a -G wheel <user>
-      
+
+#. Modify sudo with NOPASSWD option
+
+   .. code-block:: bash
+
       # Modify sudo with "visudo" and uncomment or modify the follow line
       %wheel  ALL=(ALL)       ALL
       # to
       %wheel  ALL=(ALL)       NOPASSWD: ALL
 
-#. Modify LDAP shell attribute (IF needed; RHEL requires this.)
+#. Modify LDAP shell attribute (IF needed; Corp laptop required this.)
 
    .. code-block:: bash
 
@@ -69,6 +75,17 @@ These instruction configure RHEL8 with my preferred settings.
       git clone https://github.com/spaceship-prompt/spaceship-prompt.git --depth=1
       sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup      
       source ~/.zshrc
+
+#. Insall Terminator from Source (if needed)
+
+   .. code-block:: bash
+
+      sudo dnf install python3-gobject python3-configobj python3-psutil vte291 keybinder3 intltool gettext
+
+      git clone git@github.com:gnome-terminator/terminator.git ~/git/terminator
+      cd ~/git/terminator
+      python3 setup.py build
+      sudo python3 setup.py install --single-version-externally-managed --record=install-files.txt    
 
 #. Install Alacritty from Source (if needed)
 
