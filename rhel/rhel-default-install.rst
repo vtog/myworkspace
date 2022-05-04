@@ -124,7 +124,7 @@ These instruction configure RHEL8 with my preferred settings.
       pip install pip -U
       
       # add misc packages
-      pip install ansible awscli Pygments
+      pip install ansible awscli Pygments wheel
       
 #. Add Sphinx build environment
 
