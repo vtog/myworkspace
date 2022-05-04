@@ -19,6 +19,12 @@ These instruction configure RHEL8 with my preferred settings.
       # Install Dev Tools
       sudo dnf group install "Development Tools"
 
+#. Use zsh
+
+   .. code-block:: bash
+      
+      chsh /bin/zsh
+
 #. Modify sshd
 
    .. code-block:: bash
@@ -31,7 +37,7 @@ These instruction configure RHEL8 with my preferred settings.
       # reload service
       systemctl restart sshd
 
-#. Add user to wheel group if needed
+#. Add user to wheel group (if needed)
 
    .. code-block:: bash
    
@@ -58,7 +64,7 @@ These instruction configure RHEL8 with my preferred settings.
 
 #. Setup .dotfiles
 
-   .. note:: This assumes the "dotfiles" repo exists.
+   .. note:: This assumes the "dotfiles" repo exists
 
    .. code-block:: bash
 
@@ -153,7 +159,7 @@ These instruction configure RHEL8 with my preferred settings.
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       sudo dnf install graphviz
       
-#. Install docker-ce (Not needed... use podman)
+#. Install docker-ce (Not needed... Use podman)
 
    .. code-block:: bash
 
