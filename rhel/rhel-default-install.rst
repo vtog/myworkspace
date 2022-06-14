@@ -18,12 +18,16 @@ These instruction configure RHEL8 with my preferred settings.
       
       # Install Dev Tools
       sudo dnf group install "Development Tools"
+      sudo dnf install git python3-pip cmake
 
-#. Use zsh
+#. Update PIP and install misc packages
 
    .. code-block:: bash
       
-      chsh /bin/zsh
+      pip install pip -U
+      
+      # add misc packages
+      pip install ansible awscli Pygments wheel
 
 #. Install brave
 
@@ -83,11 +87,18 @@ These instruction configure RHEL8 with my preferred settings.
       source ~/.zshrc
       dots config --local status.showUntrackedFiles no
 
+#. Use zsh
+
+   .. code-block:: bash
+      
+      chsh /bin/zsh
+      # May need to logout
+
 #. Setup Spaceship-prompt
 
    .. code-block:: bash
 
-      git clone https://github.com/spaceship-prompt/spaceship-prompt.git --depth=1
+      git clone https://github.com/spaceship-prompt/spaceship-prompt.git --depth=1 ~/git/spaceship-prompt
       sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup      
       source ~/.zshrc
 
@@ -147,17 +158,6 @@ These instruction configure RHEL8 with my preferred settings.
       : q
       : q
 
-
-#. Install PIP
-
-   .. code-block:: bash
-      
-      dnf install python3-pip
-      pip install pip -U
-      
-      # add misc packages
-      pip install ansible awscli Pygments wheel
-      
 #. Add Sphinx build environment
 
    .. code-block:: bash
