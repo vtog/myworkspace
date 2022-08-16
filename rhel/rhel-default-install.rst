@@ -18,7 +18,7 @@ These instruction configure RHEL8 with my preferred settings.
       
       # Install Dev Tools
       sudo dnf group install "Development Tools"
-      sudo dnf install git python3-pip cmake
+      sudo dnf install git python3-pip cmake httpd-tools
 
 #. Update PIP and install misc packages
 
@@ -162,7 +162,7 @@ These instruction configure RHEL8 with my preferred settings.
 
    .. code-block:: bash
    
-      pip install sphinx sphinx-autobuild sphinx_rtd_theme
+      pip install sphinx sphinx_rtd_theme sphinx-pdj-theme sphinx-copybutton
       
       # F5 Theme
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
