@@ -140,8 +140,10 @@ These instruction configure RHEL8 with my preferred settings.
 
    .. code-block:: bash
 
+      sudo dnf install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
       git clone git@github.com:neovim/neovim.git ~/git/neovim
       cd ~/git/neovim
+      make distclean
       make CMAKE_BUILD_TYPE=Release
       sudo make install
 
