@@ -5,7 +5,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 
 #. If needed setup fusion free and non-free
 
-   .. attention:: These repo's may not be needed.
+   .. attention:: Optional, these repo's may not be needed.
 
    .. code-block:: bash
 
@@ -31,7 +31,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
    .. code-block:: bash
 
       sudo dnf group install "Development Tools"
-      sudo dnf install git cmake httpd-tools python3-pip
+      sudo dnf install cmake httpd-tools python3-pip
 
 #. Install virtualization
 
@@ -39,8 +39,21 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 
       sudo dnf group install --with-optional "virtualization"
 
+      sudo systemctl enable --now libvirtd
+
+   .. attention:: You'll need to configure firewalld to allow external traffic
+      to connect to the virtual network via the host. The following
+      firewall-cmd's allow the virtual network to access port 53 and any
+      external host access to the virtual network.
+
+      .. code-block:: bash
+
+         sudo firewall-cmd --add-source=192.168.122.0/24 --zone=home --permanent
+         sudo firewall-cmd --add-service=dns --zone=home --permanent
+
 #. Insall packages via Sofware store.
 
+   - Brave
    - Yubico Authenticator
    - Visual Studio Code
 
@@ -53,14 +66,15 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       # add misc packages
       pip install ansible awscli pygments wheel
 
-#. Install brave
+#. Add Sphinx build environment
 
    .. code-block:: bash
+   
+      pip install sphinx sphinx_rtd_theme sphinx-pdj-theme sphinx-copybutton
 
-      sudo dnf install dnf-plugins-core
-      sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
-      sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-      sudo dnf install brave-browser
+      # F5 Theme
+      pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag s
+      sudo dnf install graphviz
 
 #. Modify sshd
 
@@ -102,7 +116,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 
 #. Setup .dotfiles
 
-   .. note:: This assumes the "dotfiles" github repo exists.
+   .. note:: This assumes my "dotfiles" github repo exists.
 
    .. code-block:: bash
 
@@ -118,6 +132,30 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       git clone https://github.com/spaceship-prompt/spaceship-prompt.git --depth=1 ~/git/spaceship-prompt
       sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup      
       source ~/.zshrc
+
+#. Install vim-plug (neovim)
+
+   .. code-block:: bash
+
+      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+      # Update vim!
+      vim
+      : PlugInstall
+      : q
+      : q
+
+#. Install NeoVIM from Source **(If Needed)**
+
+   .. code-block:: bash
+
+      sudo dnf install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch g
+      git clone git@github.com:neovim/neovim.git ~/git/neovim
+      cd ~/git/neovim
+      make distclean
+      make CMAKE_BUILD_TYPE=Release
+      sudo make install
 
 #. Insall Terminator from Source **(If Needed)**
 
@@ -153,40 +191,6 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       # Create Zsh Shell Completion
       sudo cp extra/completions/_alacritty /usr/share/zsh/site-functions
 
-#. Install NeoVIM from Source **(If Needed)**
-
-   .. code-block:: bash
-
-      sudo dnf install libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch gettext curl
-      git clone git@github.com:neovim/neovim.git ~/git/neovim
-      cd ~/git/neovim
-      make distclean
-      make CMAKE_BUILD_TYPE=Release
-      sudo make install
-
-#. Install vim-plug (neovim)
-
-   .. code-block:: bash
-
-      curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-      # Update vim!
-      vim
-      : PlugInstall
-      : q
-      : q
-
-#. Add Sphinx build environment
-
-   .. code-block:: bash
-   
-      pip install sphinx sphinx_rtd_theme sphinx-pdj-theme sphinx-copybutton
-      
-      # F5 Theme
-      pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
-      sudo dnf install graphviz
-      
 #. Install docker-ce **(Not needed... Use Podman)**
 
    .. code-block:: bash
@@ -200,4 +204,13 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       # Add user to docker group
       usermod -a -G docker <user>
       newgrp docker
+
+#. Install brave **(If Needed)**
+
+   .. code-block:: bash
+
+      sudo dnf install dnf-plugins-core
+      sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/x86_64/
+      sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
+      sudo dnf install brave-browser
 
