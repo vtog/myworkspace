@@ -1,24 +1,35 @@
 Setup Fedora/RHEL
 =================
 
-These instruction configure RHEL8 with my preferred settings.
-      #Setup fusion free and non-free
+These instruction configure RHEL9 or Fedora with my preferred settings.
+
+#. If needed setup fusion free and non-free
+
+   .. note:: This repo's may not be needed.
+
+   .. code-block:: bash
 
       #Fedora
       sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
       sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-    
+
       #RHEL
       sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
       sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm 
       sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
 
-      # Base requirements
-      sudo dnf install zsh neovim neofetch terminator podman gnome-tweaks gnome-extensions-app
-      
-      # Install Dev Tools
+#. Install base packages
+
+   .. code-block:: bash
+
+      sudo dnf install zsh neovim neofetch terminator gnome-tweaks gnome-extensions-app
+
+#. Install dev packages
+
+   .. code-block:: bash
+
       sudo dnf group install "Development Tools"
-      sudo dnf install git python3-pip cmake httpd-tools
+      sudo dnf install git cmake httpd-tools python3-pip
 
 #. Update PIP and install misc packages
 
@@ -50,7 +61,7 @@ These instruction configure RHEL8 with my preferred settings.
       # reload service
       systemctl restart sshd
 
-#. Add user to wheel group (if needed)
+#. Add user to wheel group **(If Needed)**
 
    .. code-block:: bash
    
@@ -65,34 +76,27 @@ These instruction configure RHEL8 with my preferred settings.
       # to
       %wheel  ALL=(ALL)       NOPASSWD: ALL
 
-#. Modify LDAP shell attribute (IF needed; Corp laptop required this.)
+#. Modify LDAP shell attribute to change default shell **(IF Needed. Corp
+   laptop required this.)**
 
    .. code-block:: bash
 
-      getent passwd user-name
-      sss_override user-add user-name -s new-shell
-      systemctl restart sssd
-      getent passwd user-name
-      sss_override user-show user-name
+      getent passwd <user-name>
+      sudo sss_override user-add <user-name> -s <new-shell>
+      sudo systemctl restart sssd
+      getent passwd <user-name>
+      sudo sss_override user-show <user-name>
 
 #. Setup .dotfiles
 
-   .. note:: This assumes the "dotfiles" repo exists
+   .. note:: This assumes the "dotfiles" github repo exists.
 
    .. code-block:: bash
 
       git clone -b rhel --separate-git-dir=$HOME/.dotfiles git@github.com:vtog/.dotfiles.git tmpdotfiles
       rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
       rm -rf ~/tmpdotfiles
-      source ~/.zshrc
       dots config --local status.showUntrackedFiles no
-
-#. Use zsh
-
-   .. code-block:: bash
-      
-      chsh /bin/zsh
-      # May need to logout
 
 #. Setup Spaceship-prompt
 
@@ -102,7 +106,7 @@ These instruction configure RHEL8 with my preferred settings.
       sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup      
       source ~/.zshrc
 
-#. Insall Terminator from Source (if needed)
+#. Insall Terminator from Source **(If Needed)**
 
    .. code-block:: bash
 
@@ -113,7 +117,7 @@ These instruction configure RHEL8 with my preferred settings.
       python3 setup.py build
       sudo python3 setup.py install --single-version-externally-managed --record=install-files.txt    
 
-#. Install Alacritty from Source (if needed)
+#. Install Alacritty from Source **(If Needed)**
 
    .. code-block:: bash
 
@@ -136,7 +140,7 @@ These instruction configure RHEL8 with my preferred settings.
       # Create Zsh Shell Completion
       sudo cp extra/completions/_alacritty /usr/share/zsh/site-functions
 
-#. Install NeoVIM from Source (if needed)
+#. Install NeoVIM from Source **(If Needed)**
 
    .. code-block:: bash
 
@@ -170,7 +174,7 @@ These instruction configure RHEL8 with my preferred settings.
       pip install f5_sphinx_theme recommonmark sphinxcontrib.addmetahtml sphinxcontrib.nwdiag sphinxcontrib.blockdiag sphinxcontrib-websupport
       sudo dnf install graphviz
       
-#. Install docker-ce (Not needed... Use podman)
+#. Install docker-ce **(Not needed... Use Podman)**
 
    .. code-block:: bash
 
