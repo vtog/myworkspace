@@ -5,7 +5,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 
 #. If needed setup fusion free and non-free
 
-   .. note:: This repo's may not be needed.
+   .. attention:: These repo's may not be needed.
 
    .. code-block:: bash
 
@@ -18,11 +18,13 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm 
       sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
 
+      sudo dnf install obs-studio
+
 #. Install base packages
 
    .. code-block:: bash
 
-      sudo dnf install zsh neovim neofetch terminator gnome-tweaks gnome-extensions-app
+      sudo dnf install zsh neovim neofetch terminator ksnip slack firewall-config zoom
 
 #. Install dev packages
 
@@ -31,6 +33,17 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       sudo dnf group install "Development Tools"
       sudo dnf install git cmake httpd-tools python3-pip
 
+#. Install virtualization
+
+   .. code-block:: bash
+
+      sudo dnf group install --with-optional "virtualization"
+
+#. Insall packages via Sofware store.
+
+   - Yubico Authenticator
+   - Visual Studio Code
+
 #. Update PIP and install misc packages
 
    .. code-block:: bash
@@ -38,7 +51,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       pip install pip -U
       
       # add misc packages
-      pip install ansible awscli Pygments wheel
+      pip install ansible awscli pygments wheel
 
 #. Install brave
 
