@@ -29,6 +29,8 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       sudo systemctl enable --now cockpit.socket
       sudo firewall-cmd --add-service=cockpit
       sudo firewall-cmd --add-service=cockpit --permanent
+      firewall-cmd --get-default-zone
+      firewall-cmd --zone=<zone-name> --list-all
 
 #. Install dev packages
 
