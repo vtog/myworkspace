@@ -77,7 +77,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 #. Install and update PIP. Install misc packages
 
    .. code-block:: bash
-      
+
       sudo dnf install python3-pip
 
       pip install pip -U
