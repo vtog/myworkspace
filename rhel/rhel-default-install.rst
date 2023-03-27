@@ -239,3 +239,10 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
       sudo dnf install brave-browser
 
+   .. code-block:: bash
+
+      # Add chromium corp policy to brave
+
+      sudo mkdir -p /etc/brave/policies/managed
+      sudo ln -s ../../../../usr/share/chromium/policies/recommended/00_gssapi.json 00_gssapi.json
+
