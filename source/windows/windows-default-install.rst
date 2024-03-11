@@ -1,3 +1,6 @@
+Default Windows Apps
+====================
+
 #. Install apps
 
    .. code-block:: console

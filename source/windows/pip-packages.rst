@@ -1,3 +1,6 @@
+Default PIP Setup
+=================
+
 #. Install PIP
 
    .. code-block:: bash

@@ -1,3 +1,6 @@
+Default GIT Setup
+=================
+
 #. Modify GIT environment
    
    .. code-block:: bash
