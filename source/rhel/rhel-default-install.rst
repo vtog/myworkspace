@@ -3,6 +3,13 @@ Setup Fedora/RHEL
 
 These instruction configure RHEL9 or Fedora with my preferred settings.
 
+#. My default install of RHEL9 had ipv6 disabled. Here's how to enable it.
+
+   .. code-block:: bash
+
+      sudo sysctl -w net.ipv6.conf.all.disable_ipv6=0
+      sudo sysctl -w net.ipv6.conf.default.disable_ipv6=0
+
 #. If needed setup fusion free and non-free
 
    .. attention:: Optional, these repo's may not be needed.
@@ -10,12 +17,12 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
    .. code-block:: bash
 
       #Fedora
-      sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm 
+      sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
       sudo dnf install https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
       #RHEL
       sudo dnf install --nogpgcheck https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E %rhel).noarch.rpm
-      sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm 
+      sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/free/el/rpmfusion-free-release-$(rpm -E %rhel).noarch.rpm
       sudo dnf install --nogpgcheck https://mirrors.rpmfusion.org/nonfree/el/rpmfusion-nonfree-release-$(rpm -E %rhel).noarch.rpm
 
       sudo dnf install obs-studio v4l2loopback
@@ -27,10 +34,14 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       sudo dnf install zsh neovim terminator firewall-config cockpit cockpit-machines cockpit-composer
 
       sudo systemctl enable --now cockpit.socket
-      sudo firewall-cmd --add-service=cockpit
       sudo firewall-cmd --add-service=cockpit --permanent
+      sudo firewall-cmd --reload
+
       firewall-cmd --get-default-zone
       firewall-cmd --zone=<zone-name> --list-all
+
+      firewall-cmd --get-default-zone
+      firewall-cmd --list-all
 
 #. Install dev packages
 
@@ -55,6 +66,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 
          sudo firewall-cmd --add-source=192.168.122.0/24 --zone=home --permanent
          sudo firewall-cmd --add-service=dns --zone=home --permanent
+         sudo firewall-cmd --reload
 
 #. Install various packages
 
@@ -86,14 +98,14 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       sudo dnf install python3-pip
 
       pip install pip -U
-      
+
       # add misc packages
       pip install ansible awscli pygments wheel
 
 #. Add Sphinx build environment
 
    .. code-block:: bash
-   
+
       pip install sphinx==7.2.6 docutils==0.18 sphinx_rtd_theme==1.3.0 sphinx-copybutton==0.5.2
 
       # F5 Theme
@@ -105,23 +117,23 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
    .. attention:: This assumes you've set up pki.
 
    .. code-block:: bash
-   
-      # modify following settings     
+
+      # modify following settings
       vim /etc/ssh/sshd_config
          PermitRootLogin no
          PasswordAuthentication no
-               
+
       # reload service
       systemctl restart sshd
 
       # Allow port 22
-      sudo firewall-cmd --add-service=ssh
       sudo firewall-cmd --add-service=ssh --permanent
+      sudo firewall-cmd --reload
 
 #. Add user to wheel group **(If Needed)**
 
    .. code-block:: bash
-   
+
       usermod -a -G wheel <user>
 
 #. Modify sudo with NOPASSWD option
@@ -160,7 +172,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
    .. code-block:: bash
 
       git clone https://github.com/spaceship-prompt/spaceship-prompt.git --depth=1 ~/git/spaceship-prompt
-      sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup      
+      sudo ln -sf ~/git/spaceship-prompt/spaceship.zsh /usr/share/zsh/site-functions/prompt_spaceship_setup
       source ~/.zshrc
 
 #. Install vim-plug (neovim)
@@ -181,6 +193,25 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
    .. code-block:: bash
 
       oc completion zsh | sudo tee /usr/share/zsh/site-functions/_oc
+
+#. Prefer IPv4. By default IPv6 addresses are preferred. Create /etc/gai.conf
+   and change default priorities.
+
+   .. code-block:: bash
+      :emphasize-lines: 12
+
+      sudo vim /etc/gai.conf
+
+      label  ::1/128       0
+      label  ::/0          1
+      label  2002::/16     2
+      label ::/96          3
+      label ::ffff:0:0/96  4
+      precedence  ::1/128       50
+      precedence  ::/0          40
+      precedence  2002::/16     30
+      precedence ::/96          20
+      precedence ::ffff:0:0/96  60      # <=== Change this from 10 to 60 or higher
 
 #. Install brave (I prefer this to the "Software" store)
 
@@ -218,7 +249,7 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
       git clone git@github.com:gnome-terminator/terminator.git ~/git/terminator
       cd ~/git/terminator
       python3 setup.py build
-      sudo python3 setup.py install --single-version-externally-managed --record=install-files.txt    
+      sudo python3 setup.py install --single-version-externally-managed --record=install-files.txt
 
 #. Install Alacritty from Source **(If Needed)**
 
@@ -242,4 +273,3 @@ These instruction configure RHEL9 or Fedora with my preferred settings.
 
       # Create Zsh Shell Completion
       sudo cp extra/completions/_alacritty /usr/share/zsh/site-functions
-
